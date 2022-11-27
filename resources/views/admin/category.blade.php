@@ -1,13 +1,20 @@
 @extends('admin/layout')
 
 @section('container')
+    @if (Session::has('danger'))
+        <div class="alert alert-danger" role="alert">{{ Session::get('danger')}}</div>
+    @endif
+    @if (Session::has('message'))
+        <div class="alert alert-primary" role="alert">{{ Session::get('message')}}</div>
+    @endif
 <h1 style="margin: 10px;">Category</h1>
-<a href="manage_category">
+<a href="category/manage_category">
     <h4>
         <button type="button" class="btn btn-success">
             Add Category
         </button>
     </h4>
+    
 </a>
 <div class="row m-t-30">
     <div class="col-md-12">
@@ -16,70 +23,24 @@
             <table class="table table-borderless table-data3">
                 <thead>
                     <tr>
-                        <th>date</th>
-                        <th>type</th>
-                        <th>description</th>
-                        <th>status</th>
-                        <th>price</th>
+                        <th>Id</th>
+                        <th>Category Name</th>
+                        <th>Category Slug</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>2018-09-29 05:57</td>
-                        <td>Mobile</td>
-                        <td>iPhone X 64Gb Grey</td>
-                        <td class="process">Processed</td>
-                        <td>$999.00</td>
-                    </tr>
-                    <tr>
-                        <td>2018-09-28 01:22</td>
-                        <td>Mobile</td>
-                        <td>Samsung S8 Black</td>
-                        <td class="process">Processed</td>
-                        <td>$756.00</td>
-                    </tr>
-                    <tr>
-                        <td>2018-09-27 02:12</td>
-                        <td>Game</td>
-                        <td>Game Console Controller</td>
-                        <td class="denied">Denied</td>
-                        <td>$22.00</td>
-                    </tr>
-                    <tr>
-                        <td>2018-09-26 23:06</td>
-                        <td>Mobile</td>
-                        <td>iPhone X 256Gb Black</td>
-                        <td class="denied">Denied</td>
-                        <td>$1199.00</td>
-                    </tr>
-                    <tr>
-                        <td>2018-09-25 19:03</td>
-                        <td>Accessories</td>
-                        <td>USB 3.0 Cable</td>
-                        <td class="process">Processed</td>
-                        <td>$10.00</td>
-                    </tr>
-                    <tr>
-                        <td>2018-09-29 05:57</td>
-                        <td>Accesories</td>
-                        <td>Smartwatch 4.0 LTE Wifi</td>
-                        <td class="denied">Denied</td>
-                        <td>$199.00</td>
-                    </tr>
-                    <tr>
-                        <td>2018-09-24 19:10</td>
-                        <td>Camera</td>
-                        <td>Camera C430W 4k</td>
-                        <td class="process">Processed</td>
-                        <td>$699.00</td>
-                    </tr>
-                    <tr>
-                        <td>2018-09-22 00:43</td>
-                        <td>Computer</td>
-                        <td>Macbook Pro Retina 2017</td>
-                        <td class="process">Processed</td>
-                        <td>$10.00</td>
-                    </tr>
+                    @foreach ($data as $item)
+                        <tr>
+                            <td>{{$item->id}}</td>
+                            <td>{{$item->category_name }}</td>
+                            <td>{{$item->category_slug}}</td>
+                            <td>
+                                <a href="{{url('admin/category/delete/')}}/{{$item->id}}"><button type="button" class="btn btn-danger">Delete</button></a>
+                                <a href="{{url('admin/category/manage_category/')}}/{{$item->id}}"><button type="button" class="btn btn-success">Delete</button></a>
+                            </td>
+                        </tr>    
+                    @endforeach
                 </tbody>
             </table>
         </div>
