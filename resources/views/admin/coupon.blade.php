@@ -1,5 +1,5 @@
 @extends('admin/layout')
-@section('page_title','Category')
+@section('page_title','Coupon')
 @section('container')
     @if (Session::has('danger'))
         <div class="alert alert-danger" role="alert">{{ Session::get('danger')}}</div>
@@ -7,11 +7,11 @@
     @if (Session::has('message'))
         <div class="alert alert-primary" role="alert">{{ Session::get('message')}}</div>
     @endif
-<h1 style="margin: 10px;">Category</h1>
-<a href="category/manage_category">
+<h1 style="margin: 10px;">Coupon</h1>
+<a href="coupon/manage_coupon">
     <h4>
         <button type="button" class="btn btn-success">
-            Add Category
+            Add Coupon
         </button>
     </h4>
     
@@ -24,8 +24,9 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Category Name</th>
-                        <th>Category Slug</th>
+                        <th>Title</th>
+                        <th>Coupon Code</th>
+                        <th>Coupon Value</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -33,11 +34,12 @@
                     @foreach ($data as $item)
                         <tr>
                             <td>{{$item->id}}</td>
-                            <td>{{$item->category_name }}</td>
-                            <td>{{$item->category_slug}}</td>
+                            <td>{{$item->title}}</td>
+                            <td>{{$item->code}}</td>
+                            <td>{{$item->value}}</td>
                             <td>
-                                <a href="{{url('admin/category/delete/')}}/{{$item->id}}"><button type="button" class="btn btn-danger">Delete</button></a>
-                                <a href="{{url('admin/category/manage_category/')}}/{{$item->id}}"><button type="button" class="btn btn-success">Edit</button></a>
+                                <a href="{{url('admin/coupon/delete/')}}/{{$item->id}}"><button type="button" class="btn btn-danger">Delete</button></a>
+                                <a href="{{url('admin/coupon/manage_category/')}}/{{$item->id}}"><button type="button" class="btn btn-success">Edit</button></a>
                             </td>
                         </tr>    
                     @endforeach

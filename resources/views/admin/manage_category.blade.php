@@ -1,5 +1,5 @@
 @extends('admin/layout')
-
+@section('page_title','Manage Category')
 @section('container')
 <h1 style="margin: 10px;">Manage Category</h1>
 <a href="{{url('admin/category')}}">
