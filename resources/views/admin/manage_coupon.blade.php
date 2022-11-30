@@ -1,5 +1,6 @@
 @extends('admin/layout')
 @section('page_title','Manage Coupon')
+@section('coupon_select','active')
 @section('container')
 <h1 style="margin: 10px;">Manage Coupon</h1>
 <a href="{{url('admin/coupon')}}">

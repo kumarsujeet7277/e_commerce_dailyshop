@@ -1,5 +1,6 @@
 @extends('admin/layout')
 @section('page_title','Coupon')
+@section('coupon_select','active')
 @section('container')
     @if (Session::has('danger'))
         <div class="alert alert-danger" role="alert">{{ Session::get('danger')}}</div>
@@ -38,8 +39,13 @@
                             <td>{{$item->code}}</td>
                             <td>{{$item->value}}</td>
                             <td>
-                                <a href="{{url('admin/coupon/delete/')}}/{{$item->id}}"><button type="button" class="btn btn-danger">Delete</button></a>
                                 <a href="{{url('admin/coupon/manage_category/')}}/{{$item->id}}"><button type="button" class="btn btn-success">Edit</button></a>
+                                @if($item->status == 1)
+                                    <a href="{{url('admin/coupon/status/0')}}/{{$item->id}}"><button type="button" class="btn btn-warning">Active</button></a>
+                                @elseif($item->status == 0)
+                                    <a href="{{url('admin/coupon/status/1')}}/{{$item->id}}"><button type="button" class="btn btn-warning">Deactive</button></a>
+                                @endif
+                                <a href="{{url('admin/coupon/delete/')}}/{{$item->id}}"><button type="button" class="btn btn-danger">Delete</button></a>
                             </td>
                         </tr>    
                     @endforeach

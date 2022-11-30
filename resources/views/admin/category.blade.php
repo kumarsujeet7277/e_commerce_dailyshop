@@ -1,5 +1,6 @@
 @extends('admin/layout')
 @section('page_title','Category')
+@section('category_select','active')
 @section('container')
     @if (Session::has('danger'))
         <div class="alert alert-danger" role="alert">{{ Session::get('danger')}}</div>
@@ -36,8 +37,13 @@
                             <td>{{$item->category_name }}</td>
                             <td>{{$item->category_slug}}</td>
                             <td>
-                                <a href="{{url('admin/category/delete/')}}/{{$item->id}}"><button type="button" class="btn btn-danger">Delete</button></a>
                                 <a href="{{url('admin/category/manage_category/')}}/{{$item->id}}"><button type="button" class="btn btn-success">Edit</button></a>
+                                @if($item->status == 1)
+                                    <a href="{{url('admin/category/status/0')}}/{{$item->id}}"><button type="button" class="btn btn-warning">Active</button></a>
+                                @elseif($item->status == 0)
+                                    <a href="{{url('admin/category/status/1')}}/{{$item->id}}"><button type="button" class="btn btn-warning">Deactive</button></a>
+                                @endif
+                                <a href="{{url('admin/category/delete/')}}/{{$item->id}}"><button type="button" class="btn btn-danger">Delete</button></a>
                             </td>
                         </tr>    
                     @endforeach
