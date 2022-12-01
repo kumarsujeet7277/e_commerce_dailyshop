@@ -32,6 +32,7 @@
 
     <!-- Main CSS-->
     <link href="{{ asset('admin_assets/css/theme.css') }}" rel="stylesheet" media="all">
+    
 
 </head>
 
@@ -103,6 +104,10 @@
                         <li class="@yield('size_select')">
                             <a href="{{url('admin/size')}}">
                                 <i class="fas fa-tag"></i>Size</a>
+                        </li>
+                        <li class="@yield('admin/color')">
+                            <a href="{{url('admin/color')}}">
+                            <i class="fas fa-tag"></i>Color</a>
                         </li>
                     </ul>
                 </nav>
